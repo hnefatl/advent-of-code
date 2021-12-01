@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]] ; then
+    echo "Usage: run day[n] (haskell|rust)"
+    exit 1080
+fi
+
+day="$1"
+lang="$2"
+
+cd "$day/$lang" || exit 1081
+
+if [[ "$lang" == haskell ]] ; then
+  runghc Main.hs < ../input.txt
+else
+  cargo run -q < ../input.txt
+fi

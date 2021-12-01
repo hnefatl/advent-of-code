@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]] ; then
+    echo "Usage: new day[n] (haskell|rust)"
+    exit 1080
+fi
+
+day="$1"
+lang="$2"
+
+mkdir -p "$day" && cd "$day" || exit 1081
+
+if [[ "$lang" == haskell ]] ; then
+  mkdir -p "$lang"
+  touch "$lang/Main.hs"
+else
+  cargo new "$day"
+  mv "$day" rust
+fi
